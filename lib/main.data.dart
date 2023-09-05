@@ -8,6 +8,8 @@ import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:agilecrafts_test/domain/auth/auth_response.dart';
+import 'package:agilecrafts_test/domain/auth/model/auth_model.dart';
 import 'package:agilecrafts_test/domain/product_model.dart';
 
 // ignore: prefer_function_declarations_over_variables
@@ -29,14 +31,18 @@ ConfigureRepositoryLocalStorage configureRepositoryLocalStorage = ({FutureFn<Str
 };
 
 final repositoryProviders = <String, Provider<Repository<DataModelMixin>>>{
-  'productModels': productModelsRepositoryProvider
+  'authModelResponses': authModelResponsesRepositoryProvider,
+'authModels': authModelsRepositoryProvider,
+'productModels': productModelsRepositoryProvider
 };
 
 final repositoryInitializerProvider =
   FutureProvider<RepositoryInitializer>((ref) async {
+    DataHelpers.setInternalType<AuthModelResponse>('authModelResponses');
+    DataHelpers.setInternalType<AuthModel>('authModels');
     DataHelpers.setInternalType<ProductModel>('productModels');
-    final adapters = <String, RemoteAdapter>{'productModels': ref.watch(internalProductModelsRemoteAdapterProvider)};
-    final remotes = <String, bool>{'productModels': true};
+    final adapters = <String, RemoteAdapter>{'authModelResponses': ref.watch(internalAuthModelResponsesRemoteAdapterProvider), 'authModels': ref.watch(internalAuthModelsRemoteAdapterProvider), 'productModels': ref.watch(internalProductModelsRemoteAdapterProvider)};
+    final remotes = <String, bool>{'authModelResponses': true, 'authModels': true, 'productModels': true};
 
     await ref.watch(graphNotifierProvider).initialize();
 
@@ -54,10 +60,14 @@ final repositoryInitializerProvider =
     return RepositoryInitializer();
 });
 extension RepositoryWidgetRefX on WidgetRef {
+  Repository<AuthModelResponse> get authModelResponses => watch(authModelResponsesRepositoryProvider)..remoteAdapter.internalWatch = watch;
+  Repository<AuthModel> get authModels => watch(authModelsRepositoryProvider)..remoteAdapter.internalWatch = watch;
   Repository<ProductModel> get productModels => watch(productModelsRepositoryProvider)..remoteAdapter.internalWatch = watch;
 }
 
 extension RepositoryRefX on Ref {
 
+  Repository<AuthModelResponse> get authModelResponses => watch(authModelResponsesRepositoryProvider)..remoteAdapter.internalWatch = watch as Watcher;
+  Repository<AuthModel> get authModels => watch(authModelsRepositoryProvider)..remoteAdapter.internalWatch = watch as Watcher;
   Repository<ProductModel> get productModels => watch(productModelsRepositoryProvider)..remoteAdapter.internalWatch = watch as Watcher;
 }
