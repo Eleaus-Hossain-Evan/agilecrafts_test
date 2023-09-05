@@ -1,8 +1,5 @@
 import 'package:agilecrafts_test/domain/auth/auth_response.dart';
-import 'package:agilecrafts_test/infrastructure/auth_adapter.dart';
-import 'package:agilecrafts_test/presentation/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_data/flutter_data.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'main.data.dart';
@@ -37,13 +34,14 @@ class MyApp extends HookConsumerWidget {
                   error: (error, _) => Text(error.toString()),
                   loading: () => const CircularProgressIndicator(),
                   data: (_) {
-                    // final state = ref.authModelResponses
-                    //     .watchAll(remote: true, syncLocal: true);
-                    // // final state = ref.authModelResponses.watchOneNotifier(
-                    // //   ref.authModelResponses,
-                    // //   headers: {"Abp.TenantId": "10"},
-                    // //   remote: true,
-                    // // );
+                    ref.authModelResponses.logLevel = 2;
+                    ref.productModels.logLevel = 2;
+
+                    // final state = ref.authModelResponses.watchOneNotifier(
+                    //   ref.authModelResponses,
+                    //   headers: {"Abp.TenantId": "10"},
+                    //   remote: true,
+                    // );
 
                     // final auth = ref.authModelResponses;
 

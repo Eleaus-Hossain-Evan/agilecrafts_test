@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:agilecrafts_test/domain/auth/auth_body.dart';
 import 'package:flutter_data/flutter_data.dart';
@@ -19,7 +20,12 @@ mixin AuthAdapter<AuthModelResponse extends DataModel<AuthModelResponse>>
       headers: {'Abp.TenantId': tenantId.toString()},
       body: json.encode(payload),
       onSuccess: (data, label) async {
+        log(data.toString());
         return (await deserialize(data)).model;
+      },
+      onError: (e, label) {
+        log(e.toString());
+        return null;
       },
     );
   }
