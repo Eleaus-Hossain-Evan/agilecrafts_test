@@ -7,15 +7,15 @@ class HomeScreen extends HookConsumerWidget {
   const HomeScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // final auth = ref.a
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home'),
       ),
       body: const SingleChildScrollView(
-        child: Column(
-          children: [],
-        ),
-      ),
+          child: Column(
+        children: [],
+      )),
     );
   }
 }

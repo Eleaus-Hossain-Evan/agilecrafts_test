@@ -12,11 +12,6 @@ class AuthModel extends DataModel<AuthModel> with EquatableMixin {
   final String encryptedAccessToken;
   final int expireInSeconds;
   final bool shouldResetPassword;
-  final String passwordResetCode;
-  final bool requiresTwoFactorVerification;
-  final String twoFactorAuthProviders;
-  final String twoFactorRememberClientToken;
-  final String returnUrl;
   final String refreshToken;
   final int refreshTokenExpireInSeconds;
 
@@ -26,11 +21,6 @@ class AuthModel extends DataModel<AuthModel> with EquatableMixin {
     required this.encryptedAccessToken,
     required this.expireInSeconds,
     required this.shouldResetPassword,
-    required this.passwordResetCode,
-    required this.requiresTwoFactorVerification,
-    required this.twoFactorAuthProviders,
-    required this.twoFactorRememberClientToken,
-    required this.returnUrl,
     required this.refreshToken,
     required this.refreshTokenExpireInSeconds,
   });
@@ -46,11 +36,6 @@ class AuthModel extends DataModel<AuthModel> with EquatableMixin {
       encryptedAccessToken,
       expireInSeconds,
       shouldResetPassword,
-      passwordResetCode,
-      requiresTwoFactorVerification,
-      twoFactorAuthProviders,
-      twoFactorRememberClientToken,
-      returnUrl,
       refreshToken,
       refreshTokenExpireInSeconds,
     ];

@@ -1,13 +1,24 @@
 import 'package:agilecrafts_test/domain/auth/auth_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'appication/initialize_provider.dart';
 import 'main.data.dart';
 import 'presentation/auth_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final container = ProviderContainer();
+
+  // final box = container.read(hiveProviderPersonal);
+  // await box.init();
+
+  Logger.init(true, isShowFile: false, isShowTime: false);
   runApp(
     ProviderScope(
+      parent: container,
       overrides: [configureRepositoryLocalStorage()],
       child: const MyApp(),
     ),
@@ -30,7 +41,7 @@ class MyApp extends HookConsumerWidget {
         ),
         home: Scaffold(
           body: Center(
-            child: ref.watch(repositoryInitializerProvider).when(
+            child: ref.watch(initializerProvider).when(
                   error: (error, _) => Text(error.toString()),
                   loading: () => const CircularProgressIndicator(),
                   data: (_) {

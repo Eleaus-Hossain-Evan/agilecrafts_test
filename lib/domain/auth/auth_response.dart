@@ -14,17 +14,10 @@ part 'auth_response.g.dart';
 class AuthModelResponse extends DataModel<AuthModelResponse>
     with EquatableMixin {
   final BelongsTo<AuthModel> result;
-  final String targetUrl;
-  final bool success;
-  final String error;
-  final bool unAuthorizedRequest;
+  @JsonKey(name: "__abp")
   final bool abp;
   AuthModelResponse({
     required this.result,
-    required this.targetUrl,
-    required this.success,
-    required this.error,
-    required this.unAuthorizedRequest,
     required this.abp,
   });
 
@@ -35,10 +28,6 @@ class AuthModelResponse extends DataModel<AuthModelResponse>
   List<Object> get props {
     return [
       result,
-      targetUrl,
-      success,
-      error,
-      unAuthorizedRequest,
       abp,
     ];
   }

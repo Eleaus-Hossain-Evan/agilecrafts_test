@@ -57,13 +57,6 @@ AuthModel _$AuthModelFromJson(Map<String, dynamic> json) => AuthModel(
       encryptedAccessToken: json['encryptedAccessToken'] as String,
       expireInSeconds: json['expireInSeconds'] as int,
       shouldResetPassword: json['shouldResetPassword'] as bool,
-      passwordResetCode: json['passwordResetCode'] as String,
-      requiresTwoFactorVerification:
-          json['requiresTwoFactorVerification'] as bool,
-      twoFactorAuthProviders: json['twoFactorAuthProviders'] as String,
-      twoFactorRememberClientToken:
-          json['twoFactorRememberClientToken'] as String,
-      returnUrl: json['returnUrl'] as String,
       refreshToken: json['refreshToken'] as String,
       refreshTokenExpireInSeconds: json['refreshTokenExpireInSeconds'] as int,
     );
@@ -74,11 +67,6 @@ Map<String, dynamic> _$AuthModelToJson(AuthModel instance) => <String, dynamic>{
       'encryptedAccessToken': instance.encryptedAccessToken,
       'expireInSeconds': instance.expireInSeconds,
       'shouldResetPassword': instance.shouldResetPassword,
-      'passwordResetCode': instance.passwordResetCode,
-      'requiresTwoFactorVerification': instance.requiresTwoFactorVerification,
-      'twoFactorAuthProviders': instance.twoFactorAuthProviders,
-      'twoFactorRememberClientToken': instance.twoFactorRememberClientToken,
-      'returnUrl': instance.returnUrl,
       'refreshToken': instance.refreshToken,
       'refreshTokenExpireInSeconds': instance.refreshTokenExpireInSeconds,
     };

@@ -3,10 +3,12 @@ import 'dart:developer';
 import 'package:agilecrafts_test/domain/auth/auth_body.dart';
 import 'package:agilecrafts_test/domain/auth/auth_response.dart';
 import 'package:agilecrafts_test/main.data.dart';
+import 'package:agilecrafts_test/presentation/home_screen.dart';
 import 'package:agilecrafts_test/presentation/widgets/k_button.dart';
 import 'package:agilecrafts_test/presentation/widgets/k_text_form_field.dart';
 import 'package:agilecrafts_test/utils/constant/ui_constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easylogger/flutter_logger.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -55,7 +57,15 @@ class AuthScreen extends HookConsumerWidget {
                           userNameOrEmailAddress: useNameOrEmail.text,
                           password: password.text,
                         ))
-                    .then((value) => log(value.toString()));
+                    .then((value) {
+                  Logger.i(value);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ),
+                  );
+                });
               },
             ),
           ],

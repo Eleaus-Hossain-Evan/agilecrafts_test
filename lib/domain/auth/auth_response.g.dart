@@ -78,19 +78,11 @@ AuthModelResponse _$AuthModelResponseFromJson(Map<String, dynamic> json) =>
     AuthModelResponse(
       result:
           BelongsTo<AuthModel>.fromJson(json['result'] as Map<String, dynamic>),
-      targetUrl: json['targetUrl'] as String,
-      success: json['success'] as bool,
-      error: json['error'] as String,
-      unAuthorizedRequest: json['unAuthorizedRequest'] as bool,
-      abp: json['abp'] as bool,
+      abp: json['__abp'] as bool,
     );
 
 Map<String, dynamic> _$AuthModelResponseToJson(AuthModelResponse instance) =>
     <String, dynamic>{
       'result': instance.result,
-      'targetUrl': instance.targetUrl,
-      'success': instance.success,
-      'error': instance.error,
-      'unAuthorizedRequest': instance.unAuthorizedRequest,
-      'abp': instance.abp,
+      '__abp': instance.abp,
     };
